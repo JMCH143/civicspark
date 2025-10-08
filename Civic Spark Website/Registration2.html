@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Civic Spark - Sign Up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', -apple-system, system-ui, sans-serif;
+            line-height: 1.6;
+            color: #2C3E50;
+            background: #f8fafc;
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo-container {
+            text-decoration: none;
+        }
+        
+        .civic-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            font-family: 'SF Pro Display', sans-serif;
+            color: #2C3E50;
+            letter-spacing: 0.1em;
+        }
+        
+        .spark-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'SF Pro Display', sans-serif;
+            display: flex;
+            align-items: center;
+            margin-top: -0.3rem;
+        }
+        
+        .spark-letters {
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.15em;
+        }
+        
+        .lightning-bolt {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #FBBF24, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.4));
+            margin: 0 -0.2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #2C3E50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #8B5CF6;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-left: 1rem;
+        }
+        
+        .btn-secondary {
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+            color: #2C3E50;
+            border: 2px solid #FBBF24;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #FBBF24;
+            color: white;
+        }
+        
+        .btn-primary {
+            padding: 0.5rem 1.5rem;
+            background: #EC4899;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #DB2777;
+        }
+        
+        /* Main Registration Section */
+        .register-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 2rem 2rem;
+        }
+        
+        .register-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            max-width: 1000px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 700px;
+        }
+        
+        .register-left {
+            background: linear-gradient(135deg, #1e88a8 0%, #1a75a0 50%, #8b2b85 100%);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+        
+        .register-right {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+        }
+        
+        .brand-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .brand-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+        }
+        
+        .brand-text h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            font-family: 'Georgia', serif;
+        }
+        
+        .brand-text p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        .welcome-section h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #2C3E50;
+        }
+        
+        .welcome-section p {
+            color: #64748B;
+            margin-bottom: 2rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #1e88a8;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-top: 0.25rem;
+        }
+        
+        .checkbox-group label {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 0;
+        }
+        
+        .checkbox-group a {
+            color: #1e88a8;
+            text-decoration: none;
+        }
+        
+        .register-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, #1e88a8 0%, #8b2b85 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .register-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        
+        .form-footer a {
+            color: #1e88a8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+            color: #64748B;
+        }
+        
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #E5E7EB;
+            z-index: 1;
+        }
+        
+        .divider span {
+            background: white;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .social-login {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        .social-btn:hover {
+            border-color: #1e88a8;
+        }
+        
+        .benefits-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .benefits-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .benefits-list {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+        }
+        
+        .benefits-list li {
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        .benefits-list li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            font-size: 1rem;
+        }
+        
+        .student-types {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .student-types h4 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
+        
+        .student-types p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .register-card {
+                grid-template-columns: 1fr;
+                margin: 1rem;
+            }
+            
+            .register-left {
+                padding: 2rem;
+            }
+            
+            .register-right {
+                padding: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo-container">
+                <div style="display: flex; flex-direction: column; gap: 0;">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="civic-text">CIVIC</div>
+                        <div class="spark-text">
+                            <span class="spark-letters">SP</span><span class="lightning-bolt">⚡</span><span class="spark-letters">RK</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="competencies.html" class="nav-link" style="color: #8B5CF6;">Competencies</a>
+                <a href="#" class="nav-link" style="color: #8B5CF6;">Search Programs</a>
+                <a href="#" class="nav-link" style="color: #8B5CF6;">Partners</a>
+                
+                <div class="auth-buttons">
+                    <a href="Registration.html" class="btn-secondary">Register</a>
+                    <a href="Portal.html" class="btn-primary">Log In</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Registration Section -->
+    <section class="register-container">
+        <div class="register-card">
+            <div class="register-left">
+                <div class="brand-section">
+                    <svg class="brand-logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FBBF24;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:1" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <g transform="translate(60, 60)">
+                            <path d="M-5,-35 L-10,0 L5,-5 L0,35 L15,-10 L0,0 L5,-35 Z" 
+                                  fill="url(#brandGrad)" 
+                                  filter="url(#glow)"
+                                  stroke="#FFF" 
+                                  stroke-width="1.5"/>
+                        </g>
+                    </svg>
+                    <div class="brand-text">
+                        <h2>Start Your Civic Journey</h2>
+                        <p>Join thousands of young leaders building stronger communities and brighter futures through meaningful civic engagement.</p>
+                    </div>
+                </div>
+                
+                <div class="benefits-section">
+                    <h3>What You'll Get</h3>
+                    <ul class="benefits-list">
+                        <li>Personalized civic competency tracking</li>
+                        <li>Badges that signify your achievements</li>
+                        <li>Points toward a Civic Spark Seal</li>
+                        <li>Access to programs and organizations that fit your interests and needs</li>
+                        <li>Portfolio to showcase your civic impact</li>
+                        <li>Network with like-minded changemakers</li>
+                        <li>Skills that boost college and career prospects</li>
+                    </ul>
+                </div>
+                
+                <div class="student-types">
+                    <h4>Perfect for:</h4>
+                    <p>High school students, college students, young people in the workforce, and anyone passionate about making a difference in their community.</p>
+                </div>
+            </div>
+            
+            <div class="register-right">
+                <div class="welcome-section">
+                    <h1>Create Your Account</h1>
+                    <p>Join the movement of young civic leaders shaping tomorrow</p>
+                </div>
+                
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Create a password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dateOfBirth">Date of Birth</label>
+                        <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profilePhoto">Upload Profile Photo (Optional)</label>
+                        <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" style="padding: 0.5rem; border: 2px dashed #E5E7EB; background: #F9FAFB;">
+                        <small style="color: #64748B; font-size: 0.85rem; display: block; margin-top: 0.25rem;">JPG, PNG, or GIF up to 5MB</small>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="school">School/Organization/Work</label>
+                            <input type="text" id="school" name="school" placeholder="Your school, organization, or employer">
+                        </div>
+                        <div class="form-group">
+                            <label for="grade">Grade Level/Status</label>
+                            <select id="grade" name="grade">
+                                <option value="">Select your level</option>
+                                <option value="high-school-9">9th Grade</option>
+                                <option value="high-school-10">10th Grade</option>
+                                <option value="high-school-11">11th Grade</option>
+                                <option value="high-school-12">12th Grade</option>
+                                <option value="college-freshman">College Freshman</option>
+                                <option value="college-sophomore">College Sophomore</option>
+                                <option value="college-junior">College Junior</option>
+                                <option value="college-senior">College Senior</option>
+                                <option value="graduate">Graduate Student</option>
+                                <option value="young-professional">Young Professional</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interests">Areas of Interest (Optional)</label>
+                        <select id="interests" name="interests">
+                            <option value="">Choose your primary interest</option>
+                            <option value="policy-advocacy">Policy & Advocacy</option>
+                            <option value="community-organizing">Community Organizing</option>
+                            <option value="environmental-justice">Environmental Justice</option>
+                            <option value="social-justice">Social Justice</option>
+                            <option value="education-reform">Education Reform</option>
+                            <option value="local-government">Local Government</option>
+                            <option value="voter-engagement">Voter Engagement</option>
+                            <option value="nonprofit-work">Nonprofit Work</option>
+                        </select>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the <a href="#terms">Terms of Service</a> and <a href="#privacy">Privacy Policy</a></label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">Send me updates about new opportunities and civic leadership resources</label>
+                    </div>
+                    
+                    <button type="submit" class="register-btn">Create My Civic Spark Account</button>
+                    
+                    <div class="form-footer">
+                        <p>Already have an account? <a href="Portal.html">Sign in here</a></p>
+                    </div>
+                </form>
+                
+                <div class="divider">
+                    <span>or sign up with</span>
+                </div>
+                
+                <div class="social-login">
+                    <a href="#" class="social-btn">Google</a>
+                    <a href="#" class="social-btn">Facebook</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

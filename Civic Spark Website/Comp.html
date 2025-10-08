@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civic Competencies - Civic Spark</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', -apple-system, system-ui, sans-serif;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(139, 92, 246, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            text-decoration: none;
+        }
+
+        .civic-text {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.08em;
+        }
+        
+        .spark-text {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+        
+        .spark-letters {
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.12em;
+        }
+        
+        .lightning-bolt {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #FBBF24, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
+            margin: 0 -0.15rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #1a1a2e;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-link:hover {
+            color: #8B5CF6;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-secondary {
+            padding: 0.7rem 1.8rem;
+            background: #f8fafc;
+            color: #0f3460;
+            border: 2px solid #8B5CF6;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #8B5CF6;
+            color: white;
+        }
+        
+        .btn-primary {
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding-top: 140px;
+            padding-bottom: 4rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #64748B;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        /* Main Content */
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .intro-text {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #475569;
+        }
+
+        .intro-text strong {
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+        
+        .competency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .competency-card {
+            text-align: center;
+            padding: 2.5rem;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .competency-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .competency-card p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #475569;
+        }
+
+        .competency-card h3 {
+            margin: 1.5rem 0 1rem;
+            color: #1a1a2e;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .icon-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 2.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #0f3460, #16213e);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-large {
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .btn-large.btn-primary {
+            background: linear-gradient(135deg, #FBBF24, #F59E0B);
+            color: white;
+        }
+
+        .btn-large.btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #0f3460;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #E2E8F0;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #A0AEC0;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #8B5CF6;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #4A5568;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            text-align: center;
+            color: #A0AEC0;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .competency-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo-container">
+                <div style="display: flex; flex-direction: column; gap: 0;">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="civic-text">CIVIC</div>
+                        <div class="spark-text">
+                            <span class="spark-letters">SP</span><span class="lightning-bolt">⚡</span><span class="spark-letters">RK</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="competencies.html" class="nav-link" style="color: #8B5CF6;">Competencies</a>
+                
+                <div class="auth-buttons">
+                    <a href="Registration.html" class="btn-secondary">Register</a>
+                    <a href="Portal.html" class="btn-primary">Log In</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Civic Competencies</h1>
+            <p class="hero-subtitle">
+                Build essential skills across five key areas of civic engagement and democratic participation
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section">
+        <div class="container">
+            <div class="intro-text">
+                The Civic Spark framework is built on <strong>five core competency areas</strong> that represent the essential skills and knowledge needed for meaningful civic participation. Choose your pathways, earn badges, and develop the expertise to become an effective changemaker in your community.
+            </div>
+
+            <div class="competency-grid">
+                <div class="competency-card">
+                    <div class="icon-circle" style="background: #14b8a6; color: white;">🏛️</div>
+                    <h3>Civic Learning</h3>
+                    <p>Understand our democratic institutions and processes, and the civic responsibilities that help assure the freedoms and liberties we cherish. Develop knowledge of government structures, constitutional principles, and the rights and responsibilities of citizenship.</p>
+                </div>
+                
+                <div class="competency-card">
+                    <div class="icon-circle" style="background: #8B5CF6; color: white;">💬</div>
+                    <h3>Bridging Divides</h3>
+                    <p>Learn how to help mitigate polarization and strengthen collaborative processes by using important and powerful bridging skills. Master techniques for constructive dialogue, empathy-building, and finding common ground across differences.</p>
+                </div>
+                
+                <div class="competency-card">
+                    <div class="icon-circle" style="background: #EC4899; color: white;">🗳️</div>
+                    <h3>Elections & Governance</h3>
+                    <p>Promote fair, inclusive, transparent and responsive governance based upon safe, fair and lawful electoral processes. Understand voting systems, civic advocacy, and how to effectively engage with elected officials and policy-making.</p>
+                </div>
+                
+                <div class="competency-card">
+                    <div class="icon-circle" style="background: #FBBF24; color: white;">🛡️</div>
+                    <h3>Trusted Information</h3>
+                    <p>Learn how to evaluate news sources, promote high quality and verifiable information, and discourage the spread of misinformation. Develop media literacy skills and the ability to distinguish credible sources from unreliable ones.</p>
+                </div>
+                
+                <div class="competency-card">
+                    <div class="icon-circle" style="background: #0f3460; color: white;">✋</div>
+                    <h3>Service & Volunteerism</h3>
+                    <p>Actively contribute to your community through civic action that extends beyond voting to everyday life. Engage in volunteer work, community service projects, and grassroots organizing to create positive change.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Your Journey?</h2>
+            <p>Build your civic competencies and earn your Civic Spark Seal</p>
+            <div class="cta-buttons">
+                <a href="Registration.html" class="btn-primary btn-large">Register Now</a>
+                <a href="Portal.html" class="btn-secondary btn-large">Explore Programs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Programs</h4>
+                <ul>
+                    <li><a href="#civic-leadership">Civic Leadership</a></li>
+                    <li><a href="#policy-analysis">Policy Analysis</a></li>
+                    <li><a href="#community-organizing">Community Organizing</a></li>
+                    <li><a href="#digital-advocacy">Digital Advocacy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="competencies.html">Competency Framework</a></li>
+                    <li><a href="#career-pathways">Career Pathways</a></li>
+                    <li><a href="#mentorship">Mentorship Network</a></li>
+                    <li><a href="#success-stories">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#forums">Discussion Forums</a></li>
+                    <li><a href="#partnerships">Partner Organizations</a></li>
+                    <li><a href="#volunteer">Volunteer Opportunities</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#mission">Our Mission</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Civic Spark. All rights reserved. Building tomorrow's civic leaders today.</p>
+        </div>
+    </footer>
+</body>
+</html>

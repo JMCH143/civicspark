@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civic Spark - Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .partners-carousel {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            margin-top: 2rem;
+            padding: 1rem 0;
+        }
+
+        .carousel-track {
+            display: inline-flex;
+            animation: scroll 25s linear infinite;
+            gap: 4rem;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .partner-logo {
+            flex-shrink: 0;
+            display: inline-block;
+        }
+
+        .logo-placeholder {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            width: 180px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-placeholder:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .logo-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.2;
+            color: white;
+            margin-top: 0.5rem;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', -apple-system, system-ui, sans-serif;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(139, 92, 246, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            text-decoration: none;
+        }
+
+        .civic-text {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.08em;
+        }
+        
+        .spark-text {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+        
+        .spark-letters {
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.12em;
+        }
+        
+        .lightning-bolt {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #FBBF24, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
+            margin: 0 -0.15rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #1a1a2e;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-link:hover {
+            color: #8B5CF6;
+        }
+        
+        .btn-secondary {
+            padding: 0.7rem 1.8rem;
+            background: #f8fafc;
+            color: #0f3460;
+            border: 2px solid #8B5CF6;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #8B5CF6;
+            color: white;
+        }
+        
+        .btn-primary {
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            background: #f8fafc;
+        }
+        
+        .hero-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 70vh;
+            display: flex;
+        }
+        
+        .hero-left {
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #8B5CF6 100%);
+            display: flex;
+            align-items: center;
+            padding: 4rem;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-right {
+            width: 50%;
+            height: 100%;
+            background-image: url('https://i.ibb.co/zKSSKwk/happy-people-portrait-volunteer-with-thumbs-up-community-service-eco-friendly-environment-beach-grou.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-brand {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        
+        .hero-brand-logo {
+            font-size: 2.5rem;
+            filter: drop-shadow(0 2px 6px rgba(251, 191, 36, 0.6));
+        }
+        
+        .hero-content {
+            max-width: 500px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-title {
+            font-size: 3.6rem;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            font-family: 'Georgia', serif;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-large {
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .btn-large.btn-primary {
+            background: linear-gradient(135deg, #FBBF24, #F59E0B);
+        }
+
+        .tagline-section {
+            background: #f8fafc;
+            padding: 3rem 0;
+        }
+
+        .tagline-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            color: #1a1a2e;
+            margin: 0;
+        }
+
+        .tagline-section .highlight-blue {
+            color: #14b8a6;
+        }
+
+        .tagline-section .highlight-red {
+           background: linear-gradient(135deg, #8B5CF6, #EC4899);
+           -webkit-background-clip: text;
+           -webkit-text-fill-color: transparent;
+           background-clip: text;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #1a1a2e;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .why-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .why-card p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .why-card h3 {
+            margin: 1rem 0;
+            color: #1a1a2e;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.2);
+}
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+}
+        .mission-section {
+            background: linear-gradient(135deg, #8B5CF6, #6B46C1);
+            color: white;
+        }
+        
+        .mission-section .section-title {
+            color: white;
+        }
+        
+        .mission-text {
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .competency-card h3 {
+            margin: 1rem 0;
+            color: #1a1a2e;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #0f3460, #16213e);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section .section-title {
+            color: white;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .footer {
+            background: #0f3460;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #E2E8F0;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #A0AEC0;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #8B5CF6;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #4A5568;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            text-align: center;
+            color: #A0AEC0;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .hero-left, .hero-right {
+                width: 100%;
+                min-height: 50vh;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .why-grid, .competency-grid, .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+             .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo-container">
+                <div style="display: flex; flex-direction: column; gap: 0;">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="civic-text">CIVIC</div>
+                        <div class="spark-text">
+                            <span class="spark-letters">SP</span><span class="lightning-bolt">⚡</span><span class="spark-letters">RK</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="comp.html" class="nav-link" style="color: #8B5CF6;">Competencies</a>
+                
+                <div class="auth-buttons">
+                    <a href="Registration2.html" class="btn-secondary">Register</a>
+                    <a href="Portal2.html" class="btn-primary">Log In</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+            
+            <div class="auth-buttons">
+                <a href="Registration.html" class="btn-secondary">Register</a>
+                <a href="Portal2.html" class="btn-primary">Log In</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-left">
+                <div class="hero-brand">
+                    <span class="hero-brand-logo">⚡</span>
+                    <div>
+                        <div style="font-size: 1.1rem; opacity: 0.9; color: white; font-family: 'Outfit', sans-serif; font-weight: 600;">CIVIC</div>
+                        <div style="font-size: 1.3rem; font-weight: 800; margin-top: -2px; color: white; font-family: 'Outfit', sans-serif;">SPARK</div>
+                    </div>
+                </div>
+                <div class="hero-content">
+                    <h1 class="hero-title">Making Visible Your Commitment to Building a Better Future</h1>
+                    <div class="hero-buttons">
+                        <a href="#path" class="btn-secondary btn-large">Set Your Path</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-right"></div>
+        </div>
+    </section>
+
+    <!-- Tagline Section -->
+    <section class="tagline-section">
+        <div class="container">
+            <h2>
+                Badges: Because What is <span class="highlight-blue">VISIBLE</span> is <span class="highlight-red">VALUED.</span>
+            </h2>
+        </div>
+    </section>
+
+    <!-- Why Ignite the Spark -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Ignite your Spark</h2>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #FBBF24, #F59E0B); color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem;">🎯</div>
+                    <h3>Chart Your Own Path</h3>
+                    <p>Create a personalized civic journey with a database of classes, programs, and opportunities in your community and beyond.</p>
+                </div>
+                <div class="why-card">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #14b8a6, #0d9488); color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem;">🛠️</div>
+                    <h3>Show Off Your Skills</h3>
+                    <p>Effectively share the skills you learn in areas of leadership, community engagement, and democratic participation that translate to career and life success.</p>
+                </div>
+                <div class="why-card">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #8B5CF6, #EC4899); color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem;">🚀</div>
+                    <h3>Fuel Your Future</h3>
+                    <p>Connect to a network of peers, mentors, and opportunities that accelerate your impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+<section class="section" style="background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);">
+    <div class="container">
+        <h2 class="section-title">See Civic Spark in Action</h2>
+        <p style="text-align: center; font-size: 1.2rem; color: #64748B; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; font-family: 'Inter', sans-serif; line-height: 1.6;">
+            Meet Sam. Let Sam show you how to use Civic Spark to ignite your civic journey, showcase your skills, and fuel your future.
+        </p>
+        
+        <div class="video-container">
+            <iframe 
+                src="https://player.vimeo.com/video/1125347094" 
+                frameborder="0" 
+                allow="autoplay; fullscreen; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</section>
+
+    <!-- Badging Partners Section -->
+    <section class="section" style="background: linear-gradient(135deg, #8B5CF6, #6B46C1); color: white;">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Badging Partners</h2>
+            <div class="partners-carousel">
+                <div class="carousel-track">
+                    <!-- First set -->
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">
+                            <div style="width: 120px; height: 80px; background: rgba(255,255,255,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🏛️</div>
+                            <div class="logo-text">League of Women Voters</div>
+                        </div>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">
+                            <div style="width: 120px; height: 80px; background: rgba(255,255,255,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🌉</div>
+                            <div class="logo-text">Bridge</div>
+                        </div>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">
+                            <div style="width: 120px; height: 80px; background: rgba(255,255,255,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">👥</div>
+                            <div class="logo-text">Braver Angels</div>
+                        </div>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">
+                            <div style="width: 120px; height: 80px; background: rgba(255,255,255,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🎓</div>
+                            <div class="logo-text">University of Minnesota</div>
+                        </div>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">
+                            <div style="width: 120px; height: 80px; background: rgba(255,255,255,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🤝</div>
+                            <div class="logo-text">Partner Organization</div>
+                        </div>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">
+                            <div style="width: 120px; height: 80px; background: rgba(255,255,255,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">📚</div>
+                            <div class="logo-text">Educating for American Democracy</div>
+                        </div>
+                    </div>
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">
+                            <div style="width: 120px; height: 80px; background: rgba(255,255,255,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🏛️</div>
+                            <div class="logo-text">League of Women Voters</div>
+                        </div>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">
+                            <div style="width: 120px; height: 80px; background: rgba(255,255,255,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🌉</div>
+                            <div class="logo-text">Bridge</div>
+                        </div>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">
+                            <div style="width: 120px; height: 80px; background: rgba(255,255,255,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">👥</div>
+                            <div class="logo-text">Braver Angels</div>
+                        </div>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">
+                            <div style="width: 120px; height: 80px; background: rgba(255,255,255,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🎓</div>
+                            <div class="logo-text">University of Minnesota</div>
+                        </div>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">
+                            <div style="width: 120px; height: 80px; background: rgba(255,255,255,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🤝</div>
+                            <div class="logo-text">Partner Organization</div>
+                        </div>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">
+                            <div style="width: 120px; height: 80px; background: rgba(255,255,255,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">📚</div>
+                            <div class="logo-text">Educating for American Democracy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <h2 class="section-title">Ready to Light Your Spark?</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem; font-weight: 500;">Be part of a generation that doesn't just talk about change—They make it HAPPEN.</p>
+            <div class="cta-buttons">
+                <a href="#login" class="btn-primary btn-large">Log In</a>
+                <a href="#programs" class="btn-secondary btn-large" style="background: transparent; border: 2px solid white; color: white;">Search Programs</a>
+                <a href="#learn" class="btn-secondary btn-large" style="background: transparent; border: 2px solid white; color: white;">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section">
+        <div class="container">
+            <div class="stats-grid">
+                <div style="padding: 2rem;">
+                    <div class="stat-number">2,847</div>
+                    <div class="stat-label">Students interested in policy advocacy</div>
+                </div>
+                <div style="padding: 2rem;">
+                    <div class="stat-number">1,293</div>
+                    <div class="stat-label">Young leaders engaged in community organizing</div>
+                </div>
+                <div style="padding: 2rem;">
+                    <div class="stat-number">89%</div>
+                    <div class="stat-label">Participants report increased civic confidence</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Programs</h4>
+                <ul>
+                    <li><a href="#civic-leadership">Civic Leadership</a></li>
+                    <li><a href="#policy-analysis">Policy Analysis</a></li>
+                    <li><a href="#community-organizing">Community Organizing</a></li>
+                    <li><a href="#digital-advocacy">Digital Advocacy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#competency-framework">Competency Framework</a></li>
+                    <li><a href="#career-pathways">Career Pathways</a></li>
+                    <li><a href="#mentorship">Mentorship Network</a></li>
+                    <li><a href="#success-stories">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#forums">Discussion Forums</a></li>
+                    <li><a href="#partnerships">Partner Organizations</a></li>
+                    <li><a href="#volunteer">Volunteer Opportunities</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#mission">Our Mission</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Civic Spark. All rights reserved. Building tomorrow's civic leaders today.</p>
+        </div>
+    </footer>
+</body>
+</html>

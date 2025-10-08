@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Civic Spark</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            color: #1a1a2e;
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 20px rgba(139, 92, 246, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .civic-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.08em;
+        }
+        
+        .spark-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+        
+        .spark-letters {
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.12em;
+        }
+        
+        .lightning-bolt {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #FBBF24, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
+            margin: 0 -0.15rem;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+        }
+        
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .welcome {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #1a1a2e;
+            text-align: center;
+        }
+        
+        /* Sections */
+        .section {
+            background: white;
+            border: none;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.1);
+        }
+        
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        /* Competencies Section */
+        .competencies-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .seal-badge {
+            padding: 1.5rem 3rem;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+            border-radius: 15px;
+            letter-spacing: 0.1em;
+        }
+        
+        .badge-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #FBBF24, #F59E0B);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+        }
+        
+        .cylinders-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 2rem;
+            height: 350px;
+            padding: 0 2rem;
+        }
+            
+        .cylinder-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .cylinder {
+            width: 100%;
+            max-width: 120px;
+            height: 300px;
+            border: 3px solid #e0e7ff;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            background: #f8fafc;
+        }
+        
+        .cylinder-fill {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            transition: height 3s ease-out;
+            animation: fillUp 3s ease-out;
+        }
+        
+        @keyframes fillUp {
+            from { height: 0; }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #FBBF24;
+            border-radius: 50%;
+            animation: sparkle 1s ease-out;
+        }
+        
+        .cylinder-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            color: #1a1a2e;
+            line-height: 1.2;
+        }
+        
+        .progress-meter {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 300px;
+            margin-right: 2rem;
+            position: relative;
+        }
+
+        .meter-line {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #64748B;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            height: 0;
+        }
+
+        .meter-line::after {
+            content: '';
+            width: 15px;
+            height: 2px;
+            background: #64748B;
+        }
+
+        .meter-label {
+            position: absolute;
+            bottom: -30px;
+            font-size: 0.85rem;
+            color: #1a1a2e;
+            white-space: nowrap;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+        }
+        
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        /* My Programs */
+        .program-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .program-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+        }
+        
+        .progress-bar {
+            height: 35px;
+            background: #e0e7ff;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            transition: width 1.5s ease-out;
+        }
+        
+        .explore-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .explore-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+        }
+        
+        /* Connection Feed */
+        .connection-feed {
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        
+        .connection-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem;
+            border-bottom: 1px solid #e0e7ff;
+            transition: background 0.2s;
+        }
+        
+        .connection-item:hover {
+            background: #f8fafc;
+        }
+        
+        .connection-info {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .connection-name {
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            color: #1a1a2e;
+            font-size: 1.1rem;
+        }
+        
+        .connection-location {
+            font-size: 0.9rem;
+            color: #64748B;
+            margin-top: 0.25rem;
+        }
+        
+        .connection-badge {
+            font-size: 0.85rem;
+            color: #8B5CF6;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+        
+        .high-five-btn {
+            background: linear-gradient(135deg, #FBBF24, #F59E0B);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+        }
+        
+        .high-five-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .high-five-btn.clicked {
+            background: linear-gradient(135deg, #10B981, #059669);
+        }
+        
+        /* Search Section */
+        .search-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-dropdown {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e7ff;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            background: white;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e7ff;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        
+        /* Map */
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            border: 2px solid #e0e7ff;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .map-placeholder {
+            font-family: 'Outfit', sans-serif;
+            color: #64748B;
+            text-align: center;
+        }
+
+        .map-placeholder h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .spark-marker {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #FBBF24, #F59E0B);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+        }
+        
+        .spark-marker:hover {
+            transform: scale(1.4);
+        }
+        
+        /* Portfolio */
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .badge-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .badge-circle {
+            width: 130px;
+            height: 130px;
+            border: 4px solid;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-align: center;
+            padding: 1rem;
+            transition: transform 0.5s;
+            cursor: pointer;
+        }
+        
+        .badge-circle:hover {
+            animation: spin 0.5s ease-in-out;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .badge-teal { border-color: #14b8a6; color: #14b8a6; }
+        .badge-purple { border-color: #8B5CF6; color: #8B5CF6; }
+        .badge-gold { border-color: #FBBF24; color: #FBBF24; }
+        
+        .journey-info {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-family: 'Inter', sans-serif;
+            color: #64748B;
+            font-size: 1rem;
+        }
+        
+        .journey-info strong {
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+            
+            .cylinders-container {
+                flex-wrap: wrap;
+                height: auto;
+            }
+            
+            .badges-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo-container">
+                <div style="display: flex; flex-direction: column; gap: 0;">
+                    <div style="display: flex; align-items: center; gap: 0.8rem;">
+                        <div class="civic-text">CIVIC</div>
+                        <div class="spark-text">
+                            <span class="spark-letters">SP</span><span class="lightning-bolt">⚡</span><span class="spark-letters">RK</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="user-info">
+                <span>Alex Rivera</span>
+                <div class="user-avatar">AR</div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Dashboard -->
+    <div class="container">
+        <h1 class="welcome">Welcome back, Alex!</h1>
+        
+        <!-- Competencies Progress -->
+        <div class="section">
+            <h2 class="section-title">My Progress</h2>
+            
+            <svg viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 1000px; margin: 0 auto; display: block;">
+                <defs>
+                    <linearGradient id="sealGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#EC4899;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#6B46C1;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                
+                <!-- Start Point -->
+                <g class="start-point">
+                    <circle cx="600" cy="1100" r="15" fill="#0f3460"/>
+                    <text x="600" y="1130" style="font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; text-anchor: middle;" fill="#0f3460">START</text>
+                </g>
+                
+                <!-- Civic Learning Tributary (Teal) -->
+                <path d="M 600 1100 Q 350 950, 320 600 Q 350 250, 580 180" 
+                      stroke="#14b8a6" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+                <g>
+                    <circle cx="530" cy="1050" r="12" stroke="#14b8a6" fill="white" stroke-width="3"/>
+                    <circle cx="530" cy="1050" r="8" fill="#14b8a6"/>
+                </g>
+                <g>
+                    <circle cx="450" cy="950" r="12" stroke="#14b8a6" fill="white" stroke-width="3"/>
+                    <circle cx="450" cy="950" r="8" fill="#14b8a6"/>
+                </g>
+                <g>
+                    <circle cx="380" cy="820" r="12" stroke="#14b8a6" fill="white" stroke-width="3"/>
+                    <circle cx="380" cy="820" r="8" fill="#14b8a6"/>
+                </g>
+                <g>
+                    <circle cx="350" cy="650" r="12" stroke="#14b8a6" fill="white" stroke-width="3"/>
+                    <circle cx="350" cy="650" r="8" fill="#14b8a6"/>
+                </g>
+                <g>
+                    <circle cx="360" cy="480" r="12" stroke="#14b8a6" fill="white" stroke-width="3"/>
+                    <circle cx="360" cy="480" r="8" fill="#14b8a6"/>
+                </g>
+                <g>
+                    <circle cx="420" cy="320" r="12" stroke="#14b8a6" fill="white" stroke-width="3"/>
+                    <circle cx="420" cy="320" r="8" fill="#14b8a6"/>
+                </g>
+                <text x="300" y="650" style="font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 700; text-anchor: middle;" fill="#14b8a6">Civic Learning</text>
+                
+                <!-- Bridging Divides Tributary (Purple) -->
+                <path d="M 600 1100 Q 150 900, 100 600 Q 150 300, 550 180" 
+                      stroke="#8B5CF6" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+                <g>
+                    <circle cx="500" cy="1070" r="12" stroke="#8B5CF6" fill="white" stroke-width="3"/>
+                    <circle cx="500" cy="1070" r="8" fill="#8B5CF6"/>
+                </g>
+                <g>
+                    <circle cx="360" cy="1000" r="12" stroke="#8B5CF6" fill="white" stroke-width="3"/>
+                    <circle cx="360" cy="1000" r="8" fill="#8B5CF6"/>
+                </g>
+                <g>
+                    <circle cx="220" cy="880" r="12" stroke="#8B5CF6" fill="white" stroke-width="3"/>
+                    <circle cx="220" cy="880" r="8" fill="#8B5CF6"/>
+                </g>
+                <g>
+                    <circle cx="140" cy="700" r="12" stroke="#8B5CF6" fill="white" stroke-width="3"/>
+                    <circle cx="140" cy="700" r="8" fill="#8B5CF6"/>
+                </g>
+                <g>
+                    <circle cx="130" cy="500" r="12" stroke="#8B5CF6" fill="white" stroke-width="3"/>
+                    <circle cx="130" cy="500" r="8" fill="#8B5CF6"/>
+                </g>
+                <g>
+                    <circle cx="220" cy="320" r="12" stroke="#8B5CF6" fill="white" stroke-width="3"/>
+                    <circle cx="220" cy="320" r="8" fill="#8B5CF6"/>
+                </g>
+                <text x="80" y="650" style="font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 700; text-anchor: middle;" fill="#8B5CF6">Bridging</text>
+                <text x="80" y="680" style="font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 700; text-anchor: middle;" fill="#8B5CF6">Divides</text>
+                
+                <!-- Elections & Governance Tributary (Pink) -->
+                <path d="M 600 1100 Q 850 950, 880 600 Q 850 250, 620 180" 
+                      stroke="#EC4899" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+                <g>
+                    <circle cx="670" cy="1050" r="12" stroke="#EC4899" fill="white" stroke-width="3"/>
+                    <circle cx="670" cy="1050" r="8" fill="#EC4899"/>
+                </g>
+                <g>
+                    <circle cx="750" cy="950" r="12" stroke="#EC4899" fill="white" stroke-width="3"/>
+                    <circle cx="750" cy="950" r="8" fill="#EC4899"/>
+                </g>
+                <g>
+                    <circle cx="820" cy="820" r="12" stroke="#EC4899" fill="white" stroke-width="3"/>
+                    <circle cx="820" cy="820" r="8" fill="#EC4899"/>
+                </g>
+                <g>
+                    <circle cx="850" cy="650" r="12" stroke="#EC4899" fill="white" stroke-width="3"/>
+                    <circle cx="850" cy="650" r="8" fill="#EC4899"/>
+                </g>
+                <g>
+                    <circle cx="840" cy="480" r="12" stroke="#EC4899" fill="white" stroke-width="3"/>
+                    <circle cx="840" cy="480" r="8" fill="#EC4899"/>
+                </g>
+                <g>
+                    <circle cx="780" cy="320" r="12" stroke="#EC4899" fill="white" stroke-width="3"/>
+                    <circle cx="780" cy="320" r="8" fill="#EC4899"/>
+                </g>
+                <text x="900" y="650" style="font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 700; text-anchor: middle;" fill="#EC4899">Elections &</text>
+                <text x="900" y="680" style="font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 700; text-anchor: middle;" fill="#EC4899">Governance</text>
+                
+                <!-- Trusted Information Tributary (Gold) -->
+                <path d="M 600 1100 Q 1050 900, 1100 600 Q 1050 300, 650 180" 
+                      stroke="#FBBF24" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+                <g>
+                    <circle cx="700" cy="1070" r="12" stroke="#FBBF24" fill="white" stroke-width="3"/>
+                    <circle cx="700" cy="1070" r="8" fill="#FBBF24"/>
+                </g>
+                <g>
+                    <circle cx="840" cy="1000" r="12" stroke="#FBBF24" fill="white" stroke-width="3"/>
+                    <circle cx="840" cy="1000" r="8" fill="#FBBF24"/>
+                </g>
+                <g>
+                    <circle cx="980" cy="880" r="12" stroke="#FBBF24" fill="white" stroke-width="3"/>
+                    <circle cx="980" cy="880" r="8" fill="#FBBF24"/>
+                </g>
+                <g>
+                    <circle cx="1060" cy="700" r="12" stroke="#FBBF24" fill="white" stroke-width="3"/>
+                    <circle cx="1060" cy="700" r="8" fill="#FBBF24"/>
+                </g>
+                <g>
+                    <circle cx="1070" cy="500" r="12" stroke="#FBBF24" fill="white" stroke-width="3"/>
+                    <circle cx="1070" cy="500" r="8" fill="#FBBF24"/>
+                </g>
+                <g>
+                    <circle cx="980" cy="320" r="12" stroke="#FBBF24" fill="white" stroke-width="3"/>
+                    <circle cx="980" cy="320" r="8" fill="#FBBF24"/>
+                </g>
+                <text x="1120" y="650" style="font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 700; text-anchor: middle;" fill="#FBBF24">Trusted</text>
+                <text x="1120" y="680" style="font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 700; text-anchor: middle;" fill="#FBBF24">Information</text>
+                
+                <!-- Service & Volunteerism Tributary (Navy) -->
+                <path d="M 600 1100 L 600 180" 
+                      stroke="#0f3460" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+                <g>
+                    <circle cx="600" cy="1030" r="12" stroke="#0f3460" fill="white" stroke-width="3"/>
+                    <circle cx="600" cy="1030" r="8" fill="#0f3460"/>
+                </g>
+                <g>
+                    <circle cx="600" cy="940" r="12" stroke="#0f3460" fill="white" stroke-width="3"/>
+                    <circle cx="600" cy="940" r="8" fill="#0f3460"/>
+                </g>
+                <g>
+                    <circle cx="600" cy="840" r="12" stroke="#0f3460" fill="white" stroke-width="3"/>
+                    <circle cx="600" cy="840" r="8" fill="#0f3460"/>
+                </g>
+                <g>
+                    <circle cx="600" cy="720" r="12" stroke="#0f3460" fill="white" stroke-width="3"/>
+                    <circle cx="600" cy="720" r="8" fill="#0f3460"/>
+                </g>
+                <g>
+                    <circle cx="600" cy="590" r="12" stroke="#0f3460" fill="white" stroke-width="3"/>
+                    <circle cx="600" cy="590" r="8" fill="#0f3460"/>
+                </g>
+                <g>
+                    <circle cx="600" cy="460" r="12" stroke="#0f3460" fill="white" stroke-width="3"/>
+                    <circle cx="600" cy="460" r="8" fill="#0f3460"/>
+                </g>
+                <text x="520" y="750" style="font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 700; text-anchor: end;" fill="#0f3460">Service &</text>
+                <text x="520" y="780" style="font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 700; text-anchor: end;" fill="#0f3460">Volunteerism</text>
+                
+                <!-- Main River Convergence -->
+                <path d="M 580 180 L 550 180" stroke="#8B5CF6" stroke-width="8" fill="none" opacity="0.4"/>
+                <path d="M 550 180 L 600 180" stroke="#8B5CF6" stroke-width="8" fill="none" opacity="0.4"/>
+                <path d="M 600 180 L 650 180" stroke="#8B5CF6" stroke-width="8" fill="none" opacity="0.4"/>
+                
+                <!-- Civic Spark Seal -->
+                <g style="cursor: pointer;">
+                    <!-- Hexagonal badge shape -->
+                    <path d="M 600 80 L 700 120 L 700 200 L 600 240 L 500 200 L 500 120 Z" 
+                          fill="url(#sealGradient)" 
+                          stroke="#6B46C1" 
+                          stroke-width="5"
+                          filter="drop-shadow(0 4px 10px rgba(139, 92, 246, 0.4))"/>
+                    
+                    <!-- Inner hexagon border -->
+                    <path d="M 600 95 L 685 130 L 685 190 L 600 225 L 515 190 L 515 130 Z" 
+                          fill="none" 
+                          stroke="white" 
+                          stroke-width="3"
+                          opacity="0.7"/>
+                    
+                    <!-- Lightning Bolt Icon -->
+                    <text x="600" y="175" font-size="60" text-anchor="middle" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.2))">⚡</text>
+                    
+                    <!-- Badge ribbon at bottom -->
+                    <path d="M 530 215 L 670 215 L 670 245 L 640 230 L 600 245 L 560 230 L 530 245 Z"
+                          fill="#6B46C1"/>
+                    
+                    <!-- Text -->
+                    <text x="600" y="200" style="fill: white; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 22px; text-anchor: middle;">CIVIC SPARK</text>
+                    <text x="600" y="235" style="fill: white; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; text-anchor: middle;">SEAL</text>
+                </g>
+                
+                <!-- Advanced Pathways (Dotted) -->
+                <path d="M 600 80 Q 400 40, 300 10" stroke="#14b8a6" stroke-width="2" stroke-dasharray="5,5" fill="none" opacity="0.5"/>
+                <path d="M 600 80 Q 500 50, 450 20" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="5,5" fill="none" opacity="0.5"/>
+                <path d="M 600 80 Q 600 50, 600 10" stroke="#0f3460" stroke-width="2" stroke-dasharray="5,5" fill="none" opacity="0.5"/>
+                <path d="M 600 80 Q 700 50, 750 20" stroke="#EC4899" stroke-width="2" stroke-dasharray="5,5" fill="none" opacity="0.5"/>
+                <path d="M 600 80 Q 800 40, 900 10" stroke="#FBBF24" stroke-width="2" stroke-dasharray="5,5" fill="none" opacity="0.5"/>
+                
+                <text x="600" y="30" style="font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; text-anchor: middle;" fill="#64748B">Advanced Pathways</text>
+            </svg>
+            
+            <div class="journey-info">
+                <strong>Journey Started:</strong> January 1, 2026 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Credential Number:</strong> 123-456790
+            </div>
+        </div>
+        
+        <!-- Two Column Section -->
+        <div class="two-col">
+            <!-- My Programs -->
+            <div class="section">
+                <h2 class="section-title">My Programs</h2>
+                
+                <div class="program-item">
+                    <div class="program-name">Carnegie Young Leaders Fellowship</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 25%; background: linear-gradient(135deg, #EC4899, #f472b6);"></div>
+                    </div>
+                </div>
+                
+                <div class="program-item">
+                    <div class="program-name">Civics Bridgers Internship</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 50%; background: linear-gradient(135deg, #8B5CF6, #a78bfa);"></div>
+                    </div>
+                </div>
+                
+                <div class="program-item">
+                    <div class="program-name">St. Cloud Chamber of Commerce Weekend Intensive</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 87.5%; background: linear-gradient(135deg, #14b8a6, #2dd4bf);"></div>
+                    </div>
+                </div>
+                
+                <button class="explore-btn">Explore Upcoming Programs</button>
+            </div>
+            
+            <!-- Connection Feed -->
+            <div class="section">
+                <h2 class="section-title">Community Connections</h2>
+                
+                <div class="connection-feed">
+                    <div class="connection-item">
+                        <div class="connection-info">
+                            <div class="connection-name">LaQuan</div>
+                            <div class="connection-location">Minneapolis</div>
+                            <div class="connection-badge">🏆 Civic Spark Seal Achieved</div>
+                        </div>
+                        <button class="high-five-btn" onclick="highFive(this)">🙌</button>
+                    </div>
+                    
+                    <div class="connection-item">
+                        <div class="connection-info">
+                            <div class="connection-name">Carrie</div>
+                            <div class="connection-location">St. Cloud</div>
+                            <div class="connection-badge">Bridging Divides Badge</div>
+                        </div>
+                        <button class="high-five-btn" onclick="highFive(this)">🙌</button>
+                    </div>
+                    
+                    <div class="connection-item">
+                        <div class="connection-info">
+                            <div class="connection-name">Marcus</div>
+                            <div class="connection-location">Minnetonka</div>
+                            <div class="connection-badge">Service & Volunteerism Badge</div>
+                        </div>
+                        <button class="high-five-btn" onclick="highFive(this)">🙌</button>
+                    </div>
+                    
+                    <div class="connection-item">
+                        <div class="connection-info">
+                            <div class="connection-name">Sadie</div>
+                            <div class="connection-location">Lake of the Woods</div>
+                            <div class="connection-badge">Trusted Information Badge</div>
+                        </div>
+                        <button class="high-five-btn" onclick="highFive(this)">🙌</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Explore Programs -->
+        <div class="section">
+            <h2 class="section-title">Explore Programs</h2>
+            
+            <div class="search-container">
+                <select class="search-dropdown">
+                    <option>Search by...</option>
+                    <option>Name</option>
+                    <option>Organization</option>
+                    <option>Start Date</option>
+                    <option>End Date</option>
+                    <option>Length</option>
+                    <option>Schedule</option>
+                    <option>Financial Benefits</option>
+                    <option>Age Range</option>
+                    <option>Application Deadline</option>
+                    <option>Competency Priority</option>
+                </select>
+                
+                <input type="text" class="search-input" placeholder="Enter search term...">
+            </div>
+            
+            <div class="two-col">
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <h3>Minnesota Program Map</h3>
+                        <p>Hover over sparks to see programs</p>
+                    </div>
+                    <div class="spark-marker" style="top: 30%; left: 45%;" title="Minneapolis Programs"></div>
+                    <div class="spark-marker" style="top: 50%; left: 55%;" title="St. Paul Programs"></div>
+                    <div class="spark-marker" style="top: 40%; left: 30%;" title="St. Cloud Programs"></div>
+                    <div class="spark-marker" style="top: 60%; left: 65%;" title="Rochester Programs"></div>
+                    <div class="spark-marker" style="top: 20%; left: 60%;" title="Duluth Programs"></div>
+                    <div class="spark-marker" style="top: 70%; left: 40%;" title="Mankato Programs"></div>
+                </div>
+                
+                <div>
+                    <h3 style="margin-bottom: 1rem; font-family: 'Outfit', sans-serif; font-weight: 700;">Featured Programs</h3>
+                    <p style="font-family: 'Inter', sans-serif; color: #64748B; line-height: 1.6;">Programs will appear here based on your search and location preferences.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Portfolio -->
+        <div class="section">
+            <h2 class="section-title">Recent Badges</h2>
+            
+            <div class="badges-grid">
+                <div class="badge-item">
+                    <div class="badge-circle badge-teal">
+                        Civic Bridgers
+                    </div>
+                </div>
+                
+                <div class="badge-item">
+                    <div class="badge-circle badge-purple">
+                        LWVMN
+                    </div>
+                </div>
+                
+                <div class="badge-item">
+                    <div class="badge-circle badge-gold">
+                        Volunteers of America
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Animate cylinders on load
+        window.addEventListener('load', function() {
+            const fills = document.querySelectorAll('.cylinder-fill');
+            fills.forEach((fill, index) => {
+                setTimeout(() => {
+                    fill.style.height = fill.dataset.height + '%';
+                    
+                    // Add sparkles after animation
+                    setTimeout(() => {
+                        addSparkles(fill.parentElement);
+                    }, 2000);
+                }, index * 200);
+            });
+            
+            // Animate progress bars
+            setTimeout(() => {
+                document.querySelectorAll('.progress-fill').forEach((bar, index) => {
+                    setTimeout(() => {
+                        bar.style.width = bar.style.width;
+                    }, index * 300);
+                });
+            }, 1000);
+        });
+        
+        function addSparkles(cylinder) {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    cylinder.appendChild(sparkle);
+                    
+                    setTimeout(() => sparkle.remove(), 1000);
+                }, i * 100);
+            }
+        }
+        
+        function highFive(button) {
+            button.classList.add('clicked');
+            button.textContent = '✅';
+            setTimeout(() => {
+                button.textContent = '🙌';
+                button.classList.remove('clicked');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
